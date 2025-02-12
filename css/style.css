@@ -709,7 +709,7 @@ button {
      font-size: 18px;
      font-weight: normal;
      padding: 12px 15px 0 15px;
-     box-shadow: 2px 0px 6px rgb(255, 0, 179);
+     box-shadow: 2px 0px 6px rgba(243, 14, 45, 0.274);
      height: 150px;
 }
 
@@ -795,11 +795,11 @@ ul.link_menu li {
 }
 
 ul.link_menu li.active a {
-     color: #ff0990;
+     color: #fd068e;
 }
 
 ul.link_menu li a {
-     color: #fff;
+     color: #ffffff;
      font-size: 17px;
      line-height: 28px;
      display: block;
