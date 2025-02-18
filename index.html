@@ -65,10 +65,7 @@
                                  <a class="nav-link" href="about.html">За нас</a>
                               </li>
                               <li class="nav-item">
-                                 <a class="nav-link" href="room.html">Стаи</a>
-                              </li>
-                              <li class="nav-item">
-                                 <a class="nav-link" href="gallery.html">Галерия</a>
+                                 <a class="nav-link" href="room.html">Къщи</a>
                               </li>
                               <li class="nav-item">
                                  <a class="nav-link" href="contact.html">Контакти</a>
@@ -84,56 +81,194 @@
       <!-- end header inner -->
       <!-- end header -->
       <!-- banner -->
-      <section class="banner_main">
-         <div id="myCarousel" class="carousel slide banner" data-ride="carousel">
-            <ol class="carousel-indicators">
-               <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-               <li data-target="#myCarousel" data-slide-to="1"></li>
-               <li data-target="#myCarousel" data-slide-to="2"></li>
-            </ol>
-            <div class="carousel-inner">
-               <div class="carousel-item active">
-                  <img class="first-slide" src="images/banner1.jpeg" alt="First slide">
-                  <div class="container">
-                  </div>
-               </div>
-               <div class="carousel-item">
-                  <img class="second-slide" src="images/banner2.jpg" alt="Second slide">
-               </div>
-               <div class="carousel-item">
-                  <img class="third-slide" src="images/banner 3.jpeg" alt="Third slide">
-               </div>
-            </div>
-            <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="sr-only">Next</span>
-            </a>
-         </div>
-         <div class="booking_ocline">
-            <div class="container">
-               <div class="row">
-                  <div class="col-md-5">
-                     <div class="book_room">
-                        <h1>Провери за свободни места</h1>
-                        <form class="book_now">
-                           <div class="row">
-                              <div class="col-md-12">
-                                 <span>От</span>
-                                 <img class="date_cua" src="images/date.png">
-                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
-                              </div>
-                              <div class="col-md-12">
-                                 <span>До</span>
-                                 <img class="date_cua" src="images/date.png">
-                                 <input class="online_book" placeholder="dd/mm/yyyy" type="date" name="dd/mm/yyyy">
-                              </div>
-                              <div class="col-md-12">
-                                 <button class="book_btn">Провери</button>
-                              </div>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>YayStay - Резервационен Календар</title>
+    <!-- Връзка към FontAwesome за иконите -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+      integrity="sha512-Fo3rlrZj/k7ujTnH/PRq7Gp6c5D9N/2S2b5uYPKSkjA5Bsy40C2DdS0Dj9z5BJ6x3Pl+S8r+8V4oV0slWxP+pg=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      /* Позициониране на календара върху банера */
+      .banner {
+        position: relative;
+      }
+      .calendar-square {
+        position: absolute;
+        top: 200px;
+        left: 150px;
+        width: 350px;
+        height: 400px;
+        background: rgba(255, 255, 255, 0.2);
+        border: 2px solid #ccc;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        padding: 15px;
+        box-sizing: border-box;
+        border-radius: 8px;
+        z-index: 1000;
+      }
+      .calendar-square h2 {
+        margin-top: 0;
+        font-size: 25px;
+        text-align: center;
+      }
+      .calendar-square .date-inputs {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin: 10px 0;
+      }
+      .calendar-square input[type="date"] {
+        padding: 20px;
+        font-size: 18px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+      }
+      .calendar-square .buttons {
+        display: flex;
+        justify-content: space-evenly;
+        margin-top: 30px;
+      }
+      .calendar-square button {
+        background-color: #ffffff;
+        border: none;
+        color: #ff00f2;
+        padding: 10px 15px;
+        font-size: 17px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+      }
+      .calendar-square button:hover {
+        background-color: #000000;
+      }
+      .calendar-square .icon-button {
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 20px;
+        color: #e203ff;
+        transition: color 0.3s ease;
+      }
+      .calendar-square .icon-button:hover {
+        color: #ff00f2;
+      }
+      .calendar-square .message {
+        text-align: center;
+        font-weight: bold;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Банер със слайдер (пример) -->
+    <section class="banner_main">
+      <div id="myCarousel" class="carousel slide banner" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+          <li data-target="#myCarousel" data-slide-to="1"></li>
+          <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img class="first-slide" src="images/banner1.jpeg" alt="Първи слайд" />
+          </div>
+          <div class="carousel-item">
+            <img class="second-slide" src="images/banner2.jpg" alt="Втори слайд" />
+          </div>
+          <div class="carousel-item">
+            <img class="third-slide" src="images/banner3.jpeg" alt="Трети слайд" />
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#myCarousel" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Предишен</span>
+        </a>
+        <a class="carousel-control-next" href="#myCarousel" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Следващ</span>
+        </a>
+        <!-- Календар в квадратен контейнер -->
+        <div class="calendar-square">
+          <h2>Резервационен Календар</h2>
+          <div class="date-inputs">
+            <input type="date" id="checkin" title="Дата на настаняване" />
+            <input type="date" id="checkout" title="Дата на напускане" />
+          </div>
+          <div class="buttons">
+            <button onclick="checkAvailability()">
+              <i class="fas fa-search"></i> Провери
+            </button>
+            <button onclick="makeReservation()">
+              <i class="fas fa-check"></i> Резервирай
+            </button>
+          </div>
+          <p class="message" id="message"></p>
+        </div>
+      </div>
+    </section>
+
+    <!-- JavaScript функционалност -->
+    <script>
+      const bookedDates = [
+        { start: "2025-02-20", end: "2025-02-25" },
+        { start: "2025-03-05", end: "2025-03-10" },
+      ];
+
+      function checkAvailability() {
+        const checkin = document.getElementById("checkin").value;
+        const checkout = document.getElementById("checkout").value;
+        const messageElement = document.getElementById("message");
+
+        if (!checkin || !checkout) {
+          messageElement.textContent = "Моля, изберете валидни дати.";
+          messageElement.style.color = "red";
+          return;
+        }
+
+        let isAvailable = true;
+
+        for (const booking of bookedDates) {
+          if (
+            (checkin >= booking.start && checkin < booking.end) ||
+            (checkout > booking.start && checkout <= booking.end) ||
+            (checkin <= booking.start && checkout >= booking.end)
+          ) {
+            isAvailable = false;
+            break;
+          }
+        }
+
+        if (isAvailable) {
+          messageElement.textContent =
+            "Датите са свободни! Можете да направите резервация.";
+          messageElement.style.color = "green";
+        } else {
+          messageElement.textContent =
+            "Няма свободни места за резервации в избрания период. Моля изберете други дати.";
+          messageElement.style.color = "red";
+        }
+      }
+
+      function makeReservation() {
+        const messageElement = document.getElementById("message");
+        // Тук може да се добави логика за реално изпращане към сървъра
+        if (messageElement.textContent.indexOf("свободни") !== -1) {
+          alert("Вашата резервация е направена успешно!");
+          messageElement.textContent = "";
+        } else {
+          alert("Моля, първо проверете наличността!");
+        }
+      }
+    </script>
+  </body>
+</html>
+</div>
                            </div>
                         </form>
                      </div>
@@ -150,13 +285,13 @@
                <div class="col-md-5">
                   <div class="titlepage">
                      <h2>За нас</h2>
-                     <p>YayStay е агенция за къщи за гости, предлагаща уютни и стилно обзаведени места за настаняване в планината и на морския бряг. Със своите разнообразни опции за отдих и комфорт, тя е перфектният избор за всеки, който иска да се потопи в природата и да съчетае спокойствието с удобства. Независимо дали предпочитате планински уют или морски залези, YayStay има нещо специално за вас.</p>
-                     <a class="read_more" href="http://127.0.0.1:5500/about.html"> Прочети още</a>
+                     <p>YayStay е информационен сайт, с който предоставяме различни възможности за отдих на нашите клиенти. Информационният ни сайт позволява пряка връзка с нас и ...</p>
+                     <a class="read_more" href="about.html"> Прочети още</a>
                   </div>
                </div>
                <div class="col-md-7">
                   <div class="about_img">
-                     <figure><img src="images/yaystay.webp" alt="#"/></figure>
+                     <figure><img src="images/YayStayBarbie.png" alt="#"/></figure>
                   </div>
                </div>
             </div>
@@ -169,7 +304,7 @@
             <div class="row">
                <div class="col-md-12">
                   <div class="titlepage">
-                     <h2>Нашите Стаи</h2>
+                     <h2>Стаи</h2>
                      <p>описание</p>
                   </div>
                </div>
@@ -318,8 +453,10 @@
                      </div>
                      <div class="blog_room">
                         <h3>Гледка</h3>
-                        <span>описание</span>
-                        <p>описание</p>
+                        <span>Спокойствие край морето</span>
+                        <p>Тази картина улавя онзи специален момент, когато светът утихва, а морето шепне своите истории. Дървената пътека, извиваща се покрай брега, създава усещане за приключение, докато вълните нежно докосват пясъка.
+                           Един самотен пътешественик върви към хоризонта, оставяйки следи върху меката плажна ивица. Дали търси уединение, или просто се наслаждава на спокойствието? Независимо от отговора, това място е идеално за размисъл, вдъхновение и презареждане с енергията на природата.
+                           А вие кога за последно се изгубихте в красотата на морето?</p>
                      </div>
                   </div>
                </div>
@@ -330,8 +467,11 @@
                      </div>
                      <div class="blog_room">
                         <h3>Отдих</h3>
-                        <span>описание </span>
-                        <p>описание</p>
+                        <span>Райско кътче край морето</span>
+                        <p>Представете си как отпивате сутрешното си кафе, докато морският бриз леко раздвижва косата ви, а слънчевите лъчи галят лицето ви. Тази беседка в пастелни нюанси на розово и синьо е истинско бягство от шума на града. Сгушена сред зеленина и свежи цветя, тя предлага идеалното място за релакс с изглед към безкрайния хоризонт.
+                           Минималистичната подредба – две бели столчета и малка кръгла масичка, декорирана с розови цветя – допълва усещането за хармония и спокойствие. Това е място за мечти, романтични вечери или просто за наслаждаване на природата.
+                           Кой не би искал да се озове тук поне за малко?
+                           </p>
                      </div>
                   </div>
                </div>
@@ -342,8 +482,11 @@
                      </div>
                      <div class="blog_room">
                         <h3>Преживяване</h3>
-                        <span>описание </span>
-                        <p>описание</p>
+                        <span>Път към безкрайното синьо
+                        </span>
+                        <p>Тази дървена пътека, водеща към златния пясък и безкрайното море, сякаш кани всеки да направи крачка напред и да се потопи в магията на брега. Шумът на вълните, нежният морски бриз и чувството за свобода създават перфектната атмосфера за отдих и презареждане.
+                           Дюните отстрани придават естествена красота, а няколко души в далечината добавят усещане за спокойствие и простор. Това е мястото, където времето забавя ход, а мислите се подреждат под ритъма на вълните.
+                           Готови ли сте да стъпите по този дървен мост и да усетите пясъка под краката си?</p>
                      </div>
                   </div>
                </div>
@@ -412,9 +555,8 @@
                      <ul class="link_menu">
                         <li class="active"><a href="#">Начало</a></li>
                         <li><a href="about.html"> За нас</a></li>
-                        <li><a href="room.html">Стаи</a></li>
-                        <li><a href="gallery.html">Галерия</a></li>
-                        <li><a href="blog.html">Блог</a></li>
+                        <li><a href="room.html">Къщи</a></li>
+                        <li><a href="index.html">Блог</a></li>
                         <li><a href="contact.html">Контаки</a></li>
                      </ul>
                   </div>
@@ -458,5 +600,6 @@
       <!-- sidebar -->
       <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
       <script src="js/custom.js"></script>
-   </body>
+      <script src="script.js"></script>
+     </body>
 </html>
